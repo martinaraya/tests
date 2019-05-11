@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Air health meter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      body {
+        text-align: center;
+      }
+
+      #g1 {
+        width:400px; height:320px;
+        display: inline-block;
+        margin: 1em;
+      }
+
+    </style>
+
+
+  </head>
+  <body>
+    <div id="load">Loading...</div>
+    <div id="g1"></div>
+    <div id="banner"></div>
+    
+    <script src="raphael-2.1.4.min.js"></script>
+    <script src="justgage.js"></script>
+    <script>
+      var g1;
+
+      window.onload = function(){
+		setTimeout(function() {
+			    ejecuta();
+		}, (3 * 1000));        
+      };
+ 
+       function ejecuta(){
+	document.getElementById("load").remove();
+	var g1 = new JustGage({
+          id: "g1",
+          value: getRandomInt(75, 100),
+          min: 0,
+          max: 100,
+          title: "Polution",
+          symbol: "%",
+          label: "DANGER",
+	  counter: false,
+	  textRenderer: textRenderer
+        });
+
+    
+        setInterval(function() {
+          g1.refresh(getRandomInt(0, 33));
+	  }, 1500);
+
+	}
+     
+	function textRenderer(val1){
+                if (val1<50){
+		  this.label = "SAFE";
+		  this.labelFontColor = "green";
+		}else{
+		  this.label = "DANGER";
+		  this.labelFontColor = "red";
+		}	
+		return val1+this.symbol;			
+	}
+
+    </script>
+  </body>
+</html>

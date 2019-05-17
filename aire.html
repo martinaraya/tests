@@ -42,11 +42,10 @@
           value: getRandomInt(75, 100),
           min: 0,
           max: 100,
-          title: "Polution",
+          title: "Pollution",
           symbol: "%",
-          label: "DANGER",
-	  counter: false,
-	  textRenderer: textRenderer
+          label: "",
+	  counter: false
         });
 
     
@@ -55,17 +54,7 @@
 	  }, 1500);
 
 	}
-     
-	function textRenderer(val1){
-                if (val1<50){
-		  this.label = "SAFE";
-		  this.labelFontColor = "green";
-		}else{
-		  this.label = "DANGER";
-		  this.labelFontColor = "red";
-		}	
-		return val1+this.symbol;			
-	}
+     	
 
     </script>
   </body>
